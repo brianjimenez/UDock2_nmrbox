@@ -21,6 +21,7 @@ public:
     std::string forceFieldType;
     glm::vec3 barycenter;
     float radius;
+    std::string name;
     // glm::mat4 model;
 
     Molecule()
@@ -28,6 +29,7 @@ public:
         atoms = std::vector<Atom>();
         bonds = std::vector<Bond>();
         // model = glm::mat4(1.0);
+        name = "Unknown";
     }
 
     glm::uint size() const

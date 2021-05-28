@@ -159,7 +159,6 @@ GLuint loadImage (std::string filename){
     if (image == nullptr)
         throw (std::string("Failed to load texture"));
 
-    std::cout << "image size "<<w<<" "<<h << std::endl;
     GLuint texture;
     glGenTextures(1, &texture);
 
@@ -171,14 +170,12 @@ GLuint loadImage (std::string filename){
     if (comp == 3)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-        std::cout << "rgb" << std::endl;
     }
     else if (comp == 4)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        std::cout << "rgba" << std::endl;
         glGenerateMipmap(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, 0);
     }

@@ -117,7 +117,6 @@ public:
         stopThreadedEnergyCalc();
 
         //delete mol from physic simulation
-        std::cout << rigidBody.size()<< std::endl;
 
         for (unsigned int i = 0; i<rigidBody.size(); i ++){
             dynamicsWorld->removeRigidBody(rigidBody[i]);
@@ -314,6 +313,11 @@ public:
             }
         } 
         return Molecule();
+    }
+
+    const Molecule &getMol(const int i) const
+    {
+        return molecules[i];
     }
 
     Molecule getNextMol()
@@ -533,7 +537,6 @@ void newOptimMC(float elapsed,bool& optim,  float& prog){
             }
         }
 
-        std::cout << "newEner "<<newEner<<" \tcontact "<<ener.energyContact<< " \tcharge " << ener.energyCharge << std::endl;
 
     }
 

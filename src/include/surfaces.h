@@ -52,9 +52,9 @@ public:
 		// float taille_cube = 2.8f;
 
 		mc.setOrigin(glm::vec3(minX-5.0f - (probe_boost/2.0f),minY-5.0f- (probe_boost/2.0f),minZ-5.0f- (probe_boost/2.0f)));
-	    std::cout <<"origin "<< minX-5.0f - (probe_boost/2.0f)<<" "<<minY-5.0f- (probe_boost/2.0f)<<" "<<minZ-5.0f- (probe_boost/2.0f)<< std::endl;
+	   
 		mc.create(maxX-minX+10.0f + (probe_boost),maxY-minY + 10.0f + (probe_boost),maxZ-minZ + 10.0f + (probe_boost),taille_cube,true);
-		std::cout <<"create "<<maxX-minX+10.0f + (probe_boost)<<" "<<maxY-minY + 10.0f + (probe_boost)<<" "<<maxZ-minZ + 10.0f + (probe_boost)<< std::endl;
+
 
 		//On crée la van der valls sans interpolation
 		mc.setInterpolation(false);
@@ -88,9 +88,9 @@ public:
 		// float cube_size = 0.5f;
 
 		mc.setOrigin(glm::vec3(minX-5.0f - (probe_boost/2.0f),minY-5.0f- (probe_boost/2.0f),minZ-5.0f- (probe_boost/2.0f)));
-		std::cout <<"origin "<< minX-5.0f - (probe_boost/2.0f)<<" "<<minY-5.0f- (probe_boost/2.0f)<<" "<<minZ-5.0f- (probe_boost/2.0f)<< std::endl;
+
 		mc.create(maxX-minX+10.0f + (probe_boost),maxY-minY + 10.0f + (probe_boost),maxZ-minZ + 10.0f + (probe_boost),cube_size,true);
-		std::cout <<"create "<<maxX-minX+10.0f + (probe_boost)<<" "<<maxY-minY + 10.0f + (probe_boost)<<" "<<maxZ-minZ + 10.0f + (probe_boost)<< std::endl;
+
 
 
 		// On crée la SAS sans interpolation, on marque juste les cubes
@@ -168,9 +168,9 @@ public:
 		// float cube_size = 0.5f;
 
 		mc.setOrigin(glm::vec3(minX-5.0f - (probe_boost/2.0f),minY-5.0f- (probe_boost/2.0f),minZ-5.0f- (probe_boost/2.0f)));
-		std::cout <<"origin "<< minX-5.0f - (probe_boost/2.0f)<<" "<<minY-5.0f- (probe_boost/2.0f)<<" "<<minZ-5.0f- (probe_boost/2.0f)<< std::endl;
+
 		mc.create(maxX-minX+10.0f + (probe_boost),maxY-minY + 10.0f + (probe_boost),maxZ-minZ + 10.0f + (probe_boost),cube_size,true);
-		std::cout <<"create "<<maxX-minX+10.0f + (probe_boost)<<" "<<maxY-minY + 10.0f + (probe_boost)<<" "<<maxZ-minZ + 10.0f + (probe_boost)<< std::endl;
+
 
 
 		// On crée la SAS sans interpolation, on marque juste les cubes

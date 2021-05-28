@@ -191,7 +191,6 @@ void docking_input(scene_docking_data &docking_data)
                 {
                     //double click
                     if (windowEvent.button.clicks == 2){
-                        std::cout<<"double "<<std::endl;
 
                         glm::vec3 hitPoint =  glm::vec3();
                         btRigidBody* body = getPointedBody(docking_data.mh->dynamicsWorld,*docking_data.d_cam,hitPoint);
@@ -270,7 +269,6 @@ void docking_input(scene_docking_data &docking_data)
                         	// std::cout<<"hit"<<std::endl;
                         	//and we touch a constraint
                         	int constraintID = docking_data.cm->getConstraintID(hitPoint);
-                        	std::cout<<"ID "<<constraintID<<std::endl;
                         	if (constraintID != -1)
                         	{
                         		//remove the constraint
@@ -560,7 +558,6 @@ void docking_input(scene_docking_data &docking_data)
                 btRigidBody* body = getPointedBody(docking_data.mh->dynamicsWorld,*docking_data.d_cam,hitPoint);
                 if (body ){
                     int constraintID = docking_data.cm->getConstraintID(hitPoint);
-                	std::cout<<"ID "<<constraintID<<std::endl;
                 	if (constraintID != -1)
                 	{
                         btScalar m[16];

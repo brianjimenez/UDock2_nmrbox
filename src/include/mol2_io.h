@@ -74,7 +74,8 @@ Molecule readMOL2(std::ifstream& file)
 		switch (readingData)
 		{
 		case MOL2_DATA_TYPE::MOLECULE:
-
+			mol.name = line;
+			readingData = MOL2_DATA_TYPE::DATA;
 			break;
 		case MOL2_DATA_TYPE::ATOM:
 		{
@@ -181,7 +182,6 @@ Molecule readMOL2(std::ifstream& file)
 
     mol.CenterToOrigin();
     mol.calcRadius();
-    std::cout <<"radius "<< mol.radius<< std::endl;
     
     return mol;
 }

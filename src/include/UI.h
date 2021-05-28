@@ -138,8 +138,7 @@ void changeResolution(SDL_Window* window, scene_docking_data& docking_data, int 
     SDL_GetWindowSize(window,  &old_w, & old_h);
   
     if (h != old_h || w != old_w) {
-        std::cout << "diff "<< h << " " << w << " / "<< old_h <<" "<< old_w << std::endl;
-         
+                 
         SDL_SetWindowSize(window, w, h);
 
         SDL_GetWindowSize(window, &old_w, &old_h);
@@ -173,8 +172,6 @@ void changeResolution(SDL_Window* window, scene_docking_data& docking_data, int 
         sdlevent.window.event = SDL_WINDOWEVENT_MOVED;
 
         int succes = SDL_PushEvent(&sdlevent);
-        std::cout << "push ? " << succes << std::endl;
-
     }
 }
 
@@ -197,21 +194,21 @@ void optionWindow (SDL_Window* window,scene_docking_data& docking_data,bool* ope
         nitem++;
     }
     if (displayWidth >= 1920) {
-        c = " 1024x768\0 1280x960\0 1920x1080(hd 1080)\0";
+        c = " 1024x768\0 1280x960\0 1920x1080(HD 1080)\0";
         nitem++;
     }
     if (displayWidth >= 2048) {
-        c = " 1024x768\0 1280x960\0 1920x1080(hd 1080)\0 2048x1080(2K)\0";
+        c = " 1024x768\0 1280x960\0 1920x1080(HD 1080)\0 2048x1080(2K)\0";
         nitem++;
     }
     if (displayWidth >= 3840) {
 
-        c = " 1024x768\0 1280x960\0 1920x1080(hd 1080)\0 2048x1080(2K)\0 3840x2160(UHD - 1)\0";
+        c = " 1024x768\0 1280x960\0 1920x1080(HD 1080)\0 2048x1080(2K)\0 3840x2160(UHD - 1)\0";
         nitem++;
     }
     if (displayWidth >= 4096) {
 
-        c = " 1024x768\0 1280x960\0 1920x1080(hd 1080)\0 2048x1080(2K)\0 3840x2160(UHD - 1)\0 4096x2160(4k)\0";
+        c = " 1024x768\0 1280x960\0 1920x1080(HD 1080)\0 2048x1080(2K)\0 3840x2160(UHD - 1)\0 4096x2160(4k)\0";
         nitem++;
     }
 
@@ -220,13 +217,13 @@ void optionWindow (SDL_Window* window,scene_docking_data& docking_data,bool* ope
     int height = docking_data.d_cam->screen_height;
     ImGui::SetNextWindowPos(ImVec2(width / 2 - width / 4, height / 2 - height / 4), true);
     ImGui::SetNextWindowSize(ImVec2(width / 2, height / 2), true);
-    if (!ImGui::Begin("Gaphical Option", open, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove))
+    if (!ImGui::Begin("Graphical options", open, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove))
     {
         ImGui::End();
     }
     else {
         static int item = 2;
-        ImGui::Combo("screen resolution", &item, c);
+        ImGui::Combo("Screen resolution", &item, c);
         //ImGui::Combo("screen resolution", &item, " 1024x768\0 1280x960\0 1920x1080(hd 1080)\0 2048x1080(2K)\0 4096x2160(4k)\0 3840x2160(UHD-1)\0\0");
         // std::cout <<"screen_resolution "<< item << std::endl;
         //if (item == 0) { changeResolution(window, docking_data, 1024, 768); }
@@ -240,34 +237,34 @@ void optionWindow (SDL_Window* window,scene_docking_data& docking_data,bool* ope
             if (item == nitem) { changeResolution(window, docking_data, 1024, 768 - 30); }
             else { changeResolution(window, docking_data, 1024, 768); }
         }
-        if (item == 1) {
+        else if (item == 1) {
             if (item == nitem) { changeResolution(window, docking_data, 1280, 960 - 30); }
             else { changeResolution(window, docking_data, 1280, 960); }
         }
-        if (item == 2) {
+        else if (item == 2) {
             if (item == nitem) { changeResolution(window, docking_data, 1920, 1080 - 30); }
             else { changeResolution(window, docking_data, 1920, 1080); }
         }
-        if (item == 3) {
+        else if (item == 3) {
             if (item == nitem) { changeResolution(window, docking_data, 2048, 1080 - 30); }
             else { changeResolution(window, docking_data, 2048, 1080); }
         }
-        if (item == 4) {
+        else if (item == 4) {
             if (item == nitem) { changeResolution(window, docking_data, 1920, 1080 - 30); }
             else { changeResolution(window, docking_data, 3840, 2160); }
         }
-        if (item == 5) {
+        else if (item == 5) {
             if (item == nitem) { changeResolution(window, docking_data, 1920, 1080 - 30); }
             else { changeResolution(window, docking_data, 4096, 2160); }
         }
 
-        ImGui::Checkbox("skybox", docking_data.showSkybox);//already a pointer
-        ImGui::ColorEdit3("background color", (float*)docking_data.bgColor);
-        ImGui::Checkbox("invert Y axis", docking_data.invertedAxis);//already a pointer
-        ImGui::SliderFloat("mouse sensitivity (default 1)", docking_data.mouseSensitivity, 0.001f, 3.0f, "ratio = %.3f");
+        ImGui::Checkbox("Skybox", docking_data.showSkybox);//already a pointer
+        ImGui::ColorEdit3("Background color", (float*)docking_data.bgColor);
+        ImGui::Checkbox("Invert Y axis", docking_data.invertedAxis);//already a pointer
+        ImGui::SliderFloat("Mouse sensitivity (default 1)", docking_data.mouseSensitivity, 0.001f, 3.0f, "ratio = %.3f");
 
         // bool fullscreen;
-        ImGui::Checkbox("fullscreen", &docking_data.fullscreen);
+        ImGui::Checkbox("Fullscreen", &docking_data.fullscreen);
         if (docking_data.fullscreen) {
             SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
             SDL_DisplayMode dm;
@@ -323,7 +320,7 @@ void docking_UI( SDL_Window* window,scene_docking_data& docking_data ){
 	// UI-----------------------------------------------------------------------
         ImGui_ImplSdlGL3_NewFrame(window); 
         ImGui::PushFont(docking_data.font);
-        ImGui::Begin("my Window",(bool*)false,ImGuiWindowFlags_MenuBar |ImGuiWindowFlags_AlwaysAutoResize);  
+        ImGui::Begin("UDock2",(bool*)false,ImGuiWindowFlags_MenuBar |ImGuiWindowFlags_AlwaysAutoResize);  
 		
  
 
@@ -341,7 +338,7 @@ void docking_UI( SDL_Window* window,scene_docking_data& docking_data ){
         
             if(ImGui::BeginMenu("Menu")){
                 
-                ImGui::MenuItem("Option",NULL,&showOption);
+                ImGui::MenuItem("Graphical options",NULL,&showOption);
                
                 ImGui::EndMenu();
             }
@@ -350,155 +347,20 @@ void docking_UI( SDL_Window* window,scene_docking_data& docking_data ){
 
         
 
-        ImGui::Text("avg Frame in ms : %f",docking_data.averageFrameTimeMilliseconds);
-        ImGui::Text("FPS : %i",docking_data.fps);
-        ImGui::Text("Score : %5.3lf",docking_data.mh->energy);
+        //ImGui::Text("avg Frame in ms : %f",docking_data.averageFrameTimeMilliseconds);
+        //ImGui::Text("FPS : %i",docking_data.fps);
+        ImGui::Text("Binding score : %5.3lf",docking_data.mh->energy);
 
 
 
 
-
-        if (ImGui::Button("Save"))
-        {
-            
-            //writePDB(Molecule mol, const std::string filename, char mode);
-
-	        std::time_t t = std::time(0);   // get time now
-	    	std::tm* now = std::localtime(&t);
-
-
-	    	std::string filename = "../savefile/udock2export_";
-	    	filename += std::to_string(now->tm_year + 1900) + '-' + std::to_string(now->tm_mon + 1)+'-' +std::to_string(now->tm_mday ) ; //add date
-			filename +=  '-' + std::to_string(now->tm_hour)+"-"+std::to_string(now->tm_min)+"-"+std::to_string(now->tm_sec);// add time
-			
-	 
-			
-
-			
-            glm::uint moleculeIdx = 0;
-            for (Molecule & molecule : docking_data.mh->molecules)
-            {
-				const std::string molFilename = filename+ "_" + std::to_string(moleculeIdx+1) + ".mol2";
-				std::cout << molFilename << std::endl;
-
-				FILE* file = fopen(molFilename.c_str(), "w");
-				if (!file) {
-					perror(molFilename.c_str());
-					std::cout << "File opening failed" << std::endl;
-					return;
-				}
-
-                const glm::uint atomCount = molecule.atoms.size();
-                const glm::uint bondCount = molecule.bonds.size();
-                const glm::mat4 & matrix = docking_data.mh->getModelMatrix(moleculeIdx++);
-
-                fprintf(file, "@<TRIPOS>MOLECULE\n");
-                fprintf(file, "%s\n", "UDock2 export");
-                fprintf(file, "%d %d 0 0 0\n", atomCount, bondCount);
-                fprintf(file, "PROTEIN\n");
-                fprintf(file, "AMBER ff12SB\n");
-                fprintf(file, "\n\n");
-				fprintf(file, "@<TRIPOS>ATOM\n");
-
-				for (glm::uint i = 0; i < atomCount; i++)
-				{
-					Atom& at = molecule.atoms[i];
-					glm::vec3 coord = glm::vec3(matrix * glm::vec4(at.pos, 1.0));
-
-					fprintf(file, "%7d %-8s %9.4f %9.4f %9.4f %-5s %5d %-3s %9.4f\n",
-						i + 1,
-						at.atomName.c_str(),
-						coord.x,
-						coord.y,
-						coord.z,
-						at.atomType.c_str(),
-						at.residueId,
-						at.residueType.c_str(),
-						at.charge);
-
-
-				}
-
-				fprintf(file, "@<TRIPOS>BOND\n");
-				for (glm::uint i = 0; i < molecule.bonds.size(); i++)
-				{
-					Bond& b = molecule.bonds[i];
-
-					fprintf(file, "%6d %4d %4d %-2s\n",
-						i + 1,
-						b.start,
-						b.end,
-						b.type.c_str()
-					);
-				}
-                fclose(file);
-            }
-			
-            
-
-            /*
-			int nbmol = docking_data.mh->molecules.size();
-
-            int nbAtom=1;
-			std::string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-			FILE* file = fopen(filename.c_str(), "a");
-            if (!file) {
-                perror(filename.c_str());
-                std::cout << "File opening failed" << std::endl;
-                
-            }
-
-			fprintf(file, "REMARK   1  score %f \n",docking_data.mh->energy);
-			for (int i = 0; i < nbmol; ++i)
-			{
-				Molecule mol = docking_data.mh->molecules[i];
-				glm::mat4 transformation =  docking_data.mh->getModelMatrix(i);
-
-
-			    for (glm::uint j = 0; j < mol.atoms.size(); j++)
-			    {
-
-			        const char  chainID = alphabet.at(i%26);
-
-			        Atom at = mol.atoms[j];
-			        const char* atomname = at.atomType.c_str();
-			        const char* residName = at.residueType.c_str();
-			        int residnumber = at.residueId;
-			        // chainID = at.chain.c_str();
-
-			        int atomnumber = at.atomId;
-                    atomnumber = nbAtom;
-
-                    nbAtom++;
-
-			        glm::vec3 coord = glm::vec3(transformation * glm::vec4(at.pos,1.0));
-			        double x = coord.x;
-			        double y = coord.y;
-			        double z = coord.z;
-
-
-
-			        fprintf(file, "ATOM  %5d %-5s%3s %1c%4d    %8.3f%8.3f%8.3f", atomnumber, atomname, residName, chainID, residnumber, x, y, z);
-			        fprintf(file, "\n");
-			    }
-                for (glm::uint j = 0; j < mol.bonds.size(); j++)
-                {
-
-                }
-
-                fprintf(file, "TER");
-                fprintf(file, "\n");
-			}
-		    fclose(file);
-            */
-		}
 
         std::string s;
         if (docking_data.freeze){
-            s = "unfreeze";
+            s = "Unfreeze molecules";
         }
         else{
-            s = "freeze";
+            s = "Freeze molecules";
         }
         if (ImGui::Button(s.c_str()))
         {
@@ -516,12 +378,144 @@ void docking_UI( SDL_Window* window,scene_docking_data& docking_data ){
                 docking_data.mh->runThreadedEnergyCalc();
         }
 
-        if (ImGui::Button("clear Constraint"))
+        if (ImGui::Button("Delete grapnels"))
         {
             docking_data.cm->constraints.clear();
         }
 
-        if (ImGui::Button("reset"))
+
+
+        if (ImGui::Button("Save scene"))
+        {
+
+            //writePDB(Molecule mol, const std::string filename, char mode);
+
+            std::time_t t = std::time(0);   // get time now
+            std::tm* now = std::localtime(&t);
+
+
+            std::string filename = "../savefile/udock2export_";
+            filename += std::to_string(now->tm_year + 1900) + '-' + std::to_string(now->tm_mon + 1) + '-' + std::to_string(now->tm_mday); //add date
+            filename += '-' + std::to_string(now->tm_hour) + "-" + std::to_string(now->tm_min) + "-" + std::to_string(now->tm_sec);// add time
+
+            glm::uint moleculeIdx = 0;
+            for (Molecule& molecule : docking_data.mh->molecules)
+            {
+                const std::string molFilename = filename + "_" + std::to_string(moleculeIdx + 1) + ".mol2";
+
+                FILE* file = fopen(molFilename.c_str(), "w");
+                if (!file) {
+                    perror(molFilename.c_str());
+                    std::cout << "File opening failed" << std::endl;
+                    return;
+                }
+
+                const glm::uint atomCount = molecule.atoms.size();
+                const glm::uint bondCount = molecule.bonds.size();
+                const glm::mat4& matrix = docking_data.mh->getModelMatrix(moleculeIdx++);
+
+                fprintf(file, "@<TRIPOS>MOLECULE\n");
+                fprintf(file, "%s\n", "UDock2 export");
+                fprintf(file, "%d %d 0 0 0\n", atomCount, bondCount);
+                fprintf(file, "PROTEIN\n");
+                fprintf(file, "AMBER ff12SB\n");
+                fprintf(file, "\n\n");
+                fprintf(file, "@<TRIPOS>ATOM\n");
+
+                for (glm::uint i = 0; i < atomCount; i++)
+                {
+                    Atom& at = molecule.atoms[i];
+                    glm::vec3 coord = glm::vec3(matrix * glm::vec4(at.pos, 1.0));
+
+                    fprintf(file, "%7d %-8s %9.4f %9.4f %9.4f %-5s %5d %-3s %9.4f\n",
+                        i + 1,
+                        at.atomName.c_str(),
+                        coord.x,
+                        coord.y,
+                        coord.z,
+                        at.atomType.c_str(),
+                        at.residueId,
+                        at.residueType.c_str(),
+                        at.charge);
+
+
+                }
+
+                fprintf(file, "@<TRIPOS>BOND\n");
+                for (glm::uint i = 0; i < molecule.bonds.size(); i++)
+                {
+                    Bond& b = molecule.bonds[i];
+
+                    fprintf(file, "%6d %4d %4d %-2s\n",
+                        i + 1,
+                        b.start,
+                        b.end,
+                        b.type.c_str()
+                    );
+                }
+                fclose(file);
+            }
+
+
+
+            /*
+            int nbmol = docking_data.mh->molecules.size();
+
+            int nbAtom=1;
+            std::string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            FILE* file = fopen(filename.c_str(), "a");
+            if (!file) {
+                perror(filename.c_str());
+                std::cout << "File opening failed" << std::endl;
+
+            }
+
+            fprintf(file, "REMARK   1  score %f \n",docking_data.mh->energy);
+            for (int i = 0; i < nbmol; ++i)
+            {
+                Molecule mol = docking_data.mh->molecules[i];
+                glm::mat4 transformation =  docking_data.mh->getModelMatrix(i);
+
+
+                for (glm::uint j = 0; j < mol.atoms.size(); j++)
+                {
+
+                    const char  chainID = alphabet.at(i%26);
+
+                    Atom at = mol.atoms[j];
+                    const char* atomname = at.atomType.c_str();
+                    const char* residName = at.residueType.c_str();
+                    int residnumber = at.residueId;
+                    // chainID = at.chain.c_str();
+
+                    int atomnumber = at.atomId;
+                    atomnumber = nbAtom;
+
+                    nbAtom++;
+
+                    glm::vec3 coord = glm::vec3(transformation * glm::vec4(at.pos,1.0));
+                    double x = coord.x;
+                    double y = coord.y;
+                    double z = coord.z;
+
+
+
+                    fprintf(file, "ATOM  %5d %-5s%3s %1c%4d    %8.3f%8.3f%8.3f", atomnumber, atomname, residName, chainID, residnumber, x, y, z);
+                    fprintf(file, "\n");
+                }
+                for (glm::uint j = 0; j < mol.bonds.size(); j++)
+                {
+
+                }
+
+                fprintf(file, "TER");
+                fprintf(file, "\n");
+            }
+            fclose(file);
+            */
+        }
+
+        if (ImGui::Button("Reset scene"))
         {
         	//erase constraint
             docking_data.cm->constraints.clear();
@@ -564,7 +558,7 @@ void docking_UI( SDL_Window* window,scene_docking_data& docking_data ){
 
         }
 
-        if (ImGui::Button("clear"))
+        if (ImGui::Button("Clear scene"))
         {
             docking_data.cm->constraints.clear();
             docking_data.mh->clear();
@@ -575,10 +569,12 @@ void docking_UI( SDL_Window* window,scene_docking_data& docking_data ){
         static int e = 0;
         if (nbmol>=2)
         {
+            ImGui::Text("Optimization for molecule:");
             docking_data.mh->active[e] = false;
             for (int i = 0; i < nbmol; i++)
             {
-                ImGui::RadioButton(("mol" + std::to_string(i+1)).c_str(), &e, i);
+                ImGui::RadioButton(docking_data.mh->getMol(i).name.c_str(), &e, i);
+                //ImGui::RadioButton(("Molecule " + std::to_string(i+1)).c_str(), &e, i);
             }
             docking_data.mh->active[e] = true;
         }

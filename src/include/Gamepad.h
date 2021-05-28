@@ -107,7 +107,6 @@ class Gamepad
 		void init()
 		{
 		    if (SDL_NumJoysticks()){
-		        std::cout << "hello !" << std::endl;
 		        controller = SDL_GameControllerOpen(0);
 		        haptic = SDL_HapticOpenFromJoystick(SDL_GameControllerGetJoystick(controller));
 		        if(SDL_HapticRumbleInit(haptic) == 0){
@@ -118,7 +117,6 @@ class Gamepad
 
 		void clean()
 		{
-			std::cout << "goodbye !" << std::endl;
 			if (SDL_NumJoysticks()){
 
 		        SDL_HapticClose(haptic);

@@ -52,7 +52,6 @@ class ConstraintManager
 		//a pair can't have it's two point on the same molecule 
 		if ( csize%2 ==0 || (constraints.back().parent != body) )
 		{
-            std::cout<<pos.x<<" "<<pos.y<<" "<<pos.z<<" "<<std::endl;
 			constraints.push_back(Constraint(pos,body));
 		}
 	}
@@ -76,7 +75,6 @@ class ConstraintManager
 
             glm::vec3 realPos= glm::vec3((phymodel)*glm::vec4(c.pos,1.0f));
 			
-			std::cout<<glm::length(realPos-contactPoint)<<std::endl;
 			if (glm::length(realPos-contactPoint)  < constraints[i].radius )
 			{
 				return i;

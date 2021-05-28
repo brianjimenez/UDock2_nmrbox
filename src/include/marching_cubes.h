@@ -720,9 +720,6 @@ class MarchingCubes
 			// NbY = (int)(sizeY / sizeCube) + 30;
 			// NbZ = (int)(sizeZ / sizeCube) + 1;
 			NbCubes = NbX * NbY * NbZ;
-			std::cout <<"grid size "<<NbX <<" "<<NbY<<" "<<NbZ<< std::endl;
-
-			std::cout <<"NbCubes "<< NbCubes<< std::endl;
 
 			MCube::updateTaille(TailleCube);
 			MCube::SetInterpolation(interpolation);
@@ -1812,7 +1809,6 @@ class MarchingCubes
 
 			//D'ou le nombre de sommets
 			_NbVertices = nbTriangles * 3;
-			std::cout <<"nb vertice : "<< _NbVertices <<" nb triangles : " << nbTriangles<< std::endl;
 			//On fera un tableau type C4F_V3F
 			if(_Vertices != NULL)
 				SAFEDELETE_TAB(_Vertices);

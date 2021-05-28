@@ -92,8 +92,6 @@ public:
         xoffset *= MouseSensitivity;
         yoffset *= MouseSensitivity;
 
-        std::cout <<"Yaw "<<Yaw<<" Pitch"<<Pitch <<std::endl;
-
         Yaw   += xoffset;
         Pitch += yoffset;
 
